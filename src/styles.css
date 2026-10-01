@@ -1,0 +1,375 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap');
+@import './artwork.css';
+
+:root {
+  --apple-bg-dark: #000;
+  --apple-bg-white: #fff;
+  --apple-bg-light-gray: #f5f5f7;
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #6e6e73;
+  --apple-text-on-dark: #f5f5f7;
+  --apple-link-blue: #2997ff;
+  --apple-radius-card: 28px;
+  --apple-radius-button: 980px;
+  --apple-content-max-width: 1200px;
+  --apple-font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  --apple-font-text: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  --apple-gradient-text: linear-gradient(110deg, #86bdff 15%, #b9a0ff 65%, #e2caf9);
+  --scene-bg: #000;
+  --scene-ink: #f5f5f7;
+  --scene-muted: #a1a1a6;
+  font-family: var(--apple-font-text);
+  color: var(--scene-ink);
+  background: var(--apple-bg-dark);
+  color-scheme: dark;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+svg { flex-shrink: 0; }
+::selection { background: #38537b; color: #fff; }
+:focus-visible { outline: 3px solid var(--apple-link-blue); outline-offset: 5px; }
+.shell { width: min(calc(100% - 96px), var(--apple-content-max-width)); margin-inline: auto; }
+.apple-page { overflow: clip; }
+.skip-link { position: fixed; top: -80px; left: 24px; z-index: 120; background: #fff; color: #111; padding: 14px 20px; border-radius: 9px; }
+.skip-link:focus { top: 15px; }
+.page-progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 100; pointer-events: none; }
+.page-progress i { display: block; height: 100%; background: #a9bcf5; transform-origin: left; transform: scaleX(0); }
+
+/* A quiet, always available navigation bar. */
+.site-header { position: fixed; inset: 2px 0 auto; z-index: 50; background: rgba(15,15,17,.72); backdrop-filter: saturate(150%) blur(22px); border-bottom: 1px solid #ffffff12; color: #f5f5f7; }
+.header-inner { height: 62px; display: flex; align-items: center; gap: 34px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; white-space: nowrap; }
+.brand-mark { display: block; width: 28px; height: 28px; object-fit: cover; border-radius: 8px; }
+.brand-name { font-size: 14px; font-weight: 600; letter-spacing: -.02em; }
+.brand-name > span { display: none; }
+.desktop-nav { display: flex; align-items: center; justify-content: center; gap: 34px; margin-left: auto; }
+.desktop-nav a { min-height: 44px; display: flex; align-items: center; font-size: 12px; color: #c4c4ca; transition: color .2s; }
+.desktop-nav a:hover { color: #fff; }
+.header-actions { display: flex; align-items: center; gap: 15px; }
+.icon-button { width: 44px; height: 44px; display: grid; place-items: center; color: #c4c4ca; border: 0; background: none; cursor: pointer; border-radius: 50%; }
+.icon-button:hover { background: #ffffff0a; color: #fff; }
+.header-github { display: inline-flex; align-items: center; justify-content: center; min-height: 32px; gap: 8px; font-size: 11px; padding: 0 14px; background: #f5f5f7; color: #1d1d1f; border-radius: var(--apple-radius-button); }
+.menu-button, .mobile-nav { display: none; }
+
+/* Each chapter becomes a scroll-controlled stage on desktop. */
+.apple-chapter { position: relative; background: var(--scene-bg); color: var(--scene-ink); scroll-margin-top: 64px; }
+.scene-paper { --scene-bg: var(--apple-bg-light-gray); --scene-ink: var(--apple-text-primary); --scene-muted: var(--apple-text-secondary); color-scheme: light; }
+.chapter-stage { position: relative; min-height: 900px; padding: 110px 0 90px; display: flex; align-items: center; justify-content: center; overflow: hidden; isolation: isolate; }
+.scene-content { position: relative; z-index: 2; text-align: center; }
+.chapter-label { margin: 0 0 26px; font-size: 11px; color: var(--scene-muted); font-weight: 500; letter-spacing: .16em; line-height: 1.5; font-family: 'DM Mono', var(--apple-font-text); }
+.scene-heading { font-family: var(--apple-font-display); font-size: clamp(52px, 5.7vw, 82px); line-height: 1.2; letter-spacing: -.025em; font-weight: 600; margin: 0; transform-origin: center; }
+.scene-heading > span { color: var(--scene-muted); }
+.scene-caption { color: var(--scene-muted); font-size: 17px; line-height: 1.85; margin-top: 34px; }
+.scene-backdrop { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.scene-visual { transform-origin: center; }
+.has-scroll-scenes .apple-chapter { height: 190svh; }
+.has-scroll-scenes .chapter-stage { position: sticky; top: 0; height: 100svh; min-height: 720px; padding: 86px 0 58px; }
+.has-scroll-scenes .scene-stack { height: 330svh; }
+.has-scroll-scenes .scene-journey { height: 270svh; }
+.has-scroll-scenes .scene-project { height: 190svh; }
+.has-scroll-scenes .scene-contact { height: 160svh; }
+
+/* The biography is read as a single large statement. */
+.scene-about .scene-heading { font-size: clamp(60px, 6.2vw, 90px); }
+.scene-about .scene-heading > span { color: #1d1d1f; }
+.reading-statement { margin: 36px auto 0; font-size: clamp(23px, 2.25vw, 32px); font-weight: 500; line-height: 1.9; letter-spacing: -.015em; }
+.about-bio { display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 15px; text-align: left; }
+.about-bio p { margin: 0; }
+.about-portrait { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; box-shadow: 0 8px 22px #1d1d1f15; }
+
+/* Capability panels slide through a single stage. */
+.stack-aura { background: radial-gradient(ellipse at 50% 65%, #23366e55 0, transparent 58%); }
+.scene-stack .scene-heading > span { background: var(--apple-gradient-text); color: transparent; background-clip: text; }
+.capability-deck { max-width: 820px; margin: 36px auto 0; perspective: 1200px; }
+.capability-card { position: relative; text-align: left; overflow: hidden; background: linear-gradient(130deg, #212127, #101012); border: 1px solid #ffffff17; border-radius: var(--apple-radius-card); padding: 44px 48px; min-height: 316px; margin-top: 16px; }
+.capability-category { font-size: 11px; color: #a1a1a6; letter-spacing: .08em; margin: 0 0 25px; }
+.capability-card h3 { font-size: clamp(36px, 3.8vw, 54px); letter-spacing: -.03em; line-height: 1.15; font-weight: 600; margin: 0 0 15px; }
+.capability-description { font-size: 16px; line-height: 1.8; color: #b5b5bd; margin: 0; }
+.capability-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; max-width: 650px; }
+.capability-tags span { border: 1px solid #ffffff24; border-radius: var(--apple-radius-button); color: #d3d5df; padding: 8px 13px; font-size: 12px; }
+.capability-number { position: absolute; right: 22px; top: 2px; font-size: 210px; font-weight: 700; letter-spacing: -.08em; color: #ffffff07; pointer-events: none; }
+.has-scroll-scenes .capability-deck { position: relative; height: 326px; }
+.has-scroll-scenes .capability-card { position: absolute; inset: 0; margin: 0; }
+.deck-note { color: #a1a1a6; margin: 24px 0 0; font-size: 14px; }
+
+/* A full stage for every project, with a large rotating product frame. */
+.work-orb { inset: 10% 10%; border-radius: 50%; background: radial-gradient(ellipse, #37516d55, #13182222 38%, transparent 68%); }
+.work-title { font-size: clamp(76px, 7.6vw, 110px); }
+.work-title > span { background: var(--apple-gradient-text); color: transparent; background-clip: text; }
+.work-caption { font-size: 22px; }
+.scene-down { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid #ffffff30; margin-top: 24px; }
+.scene-project .scene-content { perspective: 1400px; }
+.scene-project .chapter-label { margin-bottom: 14px; }
+.showcase-heading .scene-heading { font-size: clamp(36px, 4.2vw, 60px); font-weight: 600; letter-spacing: -.035em; line-height: 1.15; }
+.project-tagline { color: var(--scene-muted); margin: 14px 0 0; font-size: 23px; font-weight: 500; line-height: 1.45; letter-spacing: -.015em; }
+.project-product { width: min(890px, 85%); height: clamp(285px, 38svh, 370px); margin: 28px auto 0; position: relative; }
+.product-frame { width: 100%; height: 100%; position: relative; border-radius: 24px; padding: 8px; background: linear-gradient(135deg, #666a70, #24272c 24%, #07090d 70%, #4e535b); box-shadow: 0 28px 65px #00000030; }
+.project-artwork { position: relative; height: 100%; width: 100%; min-height: 100%; border-radius: 17px; overflow: hidden; }
+.visual-disclaimer { position: absolute; z-index: 3; left: 24px; bottom: 20px; color: #a3b9d1; font-size: 9px; font-family: 'DM Mono', monospace; letter-spacing: .07em; }
+.project-description { max-width: 900px; margin: 26px auto 0; font-size: 15px; letter-spacing: .015em; }
+.project-description > p { max-width: 700px; margin: 0 auto; line-height: 1.85; }
+.project-links { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 24px; font-size: 11px; margin-top: 16px; }
+.project-links a { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; color: var(--apple-link-blue); }
+.project-stack { opacity: .75; font-family: 'DM Mono', var(--apple-font-text); font-size: 10px; letter-spacing: -.01em; }
+.artwork-system { padding: 30px 35px 0; }
+.ui-window { width: 100%; height: 100%; border-radius: 12px 12px 0 0; transform: none; }
+.artwork-publish .publish-scene { max-width: 650px; margin: 0 auto; transform: none; }
+.artwork-knowledge { padding: 25px 45px 0; }
+.knowledge-scene { transform: none; min-height: unset; border-radius: 12px 12px 0 0; }
+
+/* The open-source scene draws a network as its nodes arrive. */
+.community-aura { background: radial-gradient(ellipse at center, #102956 0, #010713 55%, #000 90%); }
+.scene-community .scene-heading > span { color: #b1cbf0; }
+.community-network { max-width: 860px; margin: 30px auto 0; }
+.community-network svg { display: block; width: 100%; height: auto; }
+.network-line { stroke-dasharray: 1; }
+.community-caption { margin-top: 18px; font-size: 17px; line-height: 1.85; }
+.community-caption p { margin: 0; }
+.inline-links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 26px; margin-top: 20px; }
+.inline-links a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; color: #82b7ff; }
+.inline-links a:hover, .project-links a:hover { text-decoration: underline; }
+
+/* The journey is a succession of three chapters inside one chapter. */
+.journey-deck { max-width: 850px; margin: 38px auto 0; }
+.journey-card { position: relative; text-align: left; min-height: 300px; padding: 36px 28px; margin-top: 30px; border-top: 1px solid #d2d2d7; }
+.journey-number { position: absolute; right: 20px; top: -28px; font-size: 245px; letter-spacing: -.09em; color: #1d1d1f09; font-weight: 700; }
+.journey-english { color: #6e6e73; font-size: 14px; margin: 0 0 25px; }
+.journey-card h3 { position: relative; font-size: clamp(32px, 3.8vw, 52px); line-height: 1.25; letter-spacing: -.025em; margin: 0 0 18px; font-weight: 700; }
+.journey-description { position: relative; font-size: 17px; color: #6e6e73; max-width: 600px; line-height: 1.85; margin: 0; }
+.journey-tags { font-size: 12px; color: #86868b; margin-top: 28px; }
+.has-scroll-scenes .journey-deck { position: relative; height: 300px; }
+.has-scroll-scenes .journey-card { position: absolute; inset: 0; margin: 0; }
+
+/* Code gets the same product-scale treatment. */
+.github-aura { background: radial-gradient(ellipse at 50% 60%, #191d3355, transparent 55%); }
+.repo-terminal { max-width: 800px; margin: 34px auto 0; background: #121217; border: 1px solid #37373c; border-radius: 23px; box-shadow: 0 35px 80px #0009; overflow: hidden; text-align: left; }
+.terminal-top { height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 22px; border-bottom: 1px solid #ffffff12; color: #a1a1a6; font: 11px 'DM Mono', monospace; }
+.window-dots { display: inline-flex; gap: 6px; }
+.window-dots i { width: 7px; height: 7px; background: #606068; border-radius: 50%; }
+.window-dots i:first-child { background: #92929a; }
+.terminal-command { color: #d0d0da; font: 14px 'DM Mono', monospace; margin: 0; padding: 24px 30px 19px; }
+.terminal-command > span { color: #8eabeb; }
+.repo-row { display: grid; grid-template-columns: 20px 1fr 20px; gap: 14px; align-items: center; padding: 15px 8px; margin: 0 24px; border-top: 1px solid #ffffff10; transition: background .2s; }
+.repo-row:hover { background: #ffffff07; }
+.repo-row strong { display: block; font-size: 15px; color: #eeeef4; font-weight: 500; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.repo-row small { display: block; margin-top: 7px; font-size: 12px; line-height: 1.6; color: #9999a5; }
+.repo-symbol, .repo-row > svg { color: #9db9df; }
+.repo-all { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #91b9ef; font-size: 12px; margin: 6px 30px 13px; }
+.scene-github .scene-caption { margin-top: 20px; }
+
+/* A spacious final invitation. */
+.scene-contact .scene-heading { font-size: clamp(76px, 8vw, 116px); }
+.scene-contact .scene-heading > span { background: linear-gradient(110deg, #126bcc, #6e4bb5); color: transparent; background-clip: text; }
+.contact-note { font-size: 18px; line-height: 1.8; color: #6e6e73; margin: 32px 0 0; }
+.contact-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 30px; margin-top: 34px; }
+.apple-button { display: inline-flex; gap: 14px; min-height: 54px; align-items: center; justify-content: center; padding: 0 25px; background: #0071e3; color: #fff; border-radius: var(--apple-radius-button); font-size: 16px; }
+.apple-button:hover { background: #0077ed; }
+.contact-github { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: #0066cc; font-size: 16px; }
+.contact-email { display: inline-flex; align-items: center; min-height: 44px; color: #86868b; font-size: 14px; margin-top: 20px; }
+.site-footer { background: #f5f5f7; color: #6e6e73; padding: 36px 0; border-top: 1px solid #dedee3; }
+.footer-inner { display: flex; align-items: center; gap: 28px; font-size: 12px; }
+.footer-brand { display: inline-flex; align-items: center; gap: 9px; color: #1d1d1f; font-size: 16px; font-weight: 600; }
+.footer-brand img { border-radius: 8px; }
+.back-top { margin-left: auto; min-height: 44px; display: inline-flex; align-items: center; color: #0066cc; }
+:root[data-theme='light'] .apple-chapter:not(.scene-community):not(.scene-stack) { --scene-bg: #f5f5f7; --scene-ink: #1d1d1f; --scene-muted: #6e6e73; }
+
+@media (min-width: 900px) and (max-height: 780px) {
+  .has-scroll-scenes .chapter-stage { padding: 80px 0 34px; }
+  .scene-heading { font-size: 68px; }
+  .scene-about .scene-heading { font-size: 75px; }
+  .scene-project .project-product { height: 295px; margin-top: 20px; }
+  .project-description { font-size: 13px; margin-top: 16px; }
+  .chapter-label { margin-bottom: 18px; }
+  .scene-github .repo-terminal { margin-top: 24px; }
+  .capability-deck { margin-top: 25px; }
+}
+@media (max-width: 899px) {
+  .shell { width: calc(100% - 48px); }
+  .desktop-nav, .header-github { display: none; }
+  .header-actions { margin-left: auto; gap: 5px; }
+  .menu-button { display: grid; }
+  .mobile-nav { display: flex; flex-direction: column; padding: 10px 24px 20px; background: #151518; border-top: 1px solid #ffffff15; }
+  .mobile-nav a { min-height: 48px; display: flex; align-items: center; font-size: 15px; color: #e5e5ea; }
+  .chapter-stage { min-height: 740px; padding: 95px 0; }
+  .scene-heading { font-size: clamp(42px, 8.5vw, 72px); }
+  .scene-about .scene-heading { font-size: clamp(48px, 10vw, 82px); }
+  .reading-statement { font-size: clamp(20px, 3.5vw, 29px); line-height: 1.75; }
+  .chapter-label { font-size: 10px; margin-bottom: 22px; }
+  .capability-card { min-height: 290px; padding: 34px; margin-top: 20px; }
+  .capability-card h3 { font-size: 43px; }
+  .capability-tags { margin-top: 24px; }
+  .capability-number { font-size: 160px; }
+  .work-title { font-size: clamp(62px, 11vw, 100px); }
+  .work-caption { font-size: 18px; }
+  .project-product { width: 100%; height: 340px; margin-top: 28px; }
+  .project-tagline { font-size: 20px; }
+  .project-description { font-size: 14px; }
+  .community-network { margin-top: 35px; }
+  .community-caption { margin-top: 28px; font-size: 15px; }
+  .journey-card { min-height: 260px; padding: 30px 14px; }
+  .journey-number { font-size: 180px; }
+  .journey-card h3 { font-size: 37px; }
+  .journey-description { font-size: 16px; }
+  .scene-contact .scene-heading { font-size: clamp(58px, 11vw, 90px); }
+  .contact-note { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .shell { width: calc(100% - 40px); }
+  .header-inner { height: 58px; }
+  .chapter-stage { min-height: 660px; padding: 82px 0; }
+  .scene-heading { font-size: 11vw; }
+  .scene-about .scene-heading { font-size: 13vw; }
+  .reading-statement { font-size: 18px; letter-spacing: -.04em; margin-top: 26px; }
+  .about-bio { align-items: flex-start; font-size: 12px; gap: 12px; }
+  .about-portrait { width: 42px; height: 42px; }
+  .scene-caption { font-size: 15px; margin-top: 25px; }
+  .capability-card { min-height: 285px; padding: 28px 25px; }
+  .capability-card h3 { font-size: 34px; }
+  .capability-description { font-size: 14px; }
+  .capability-tags { gap: 7px; }
+  .capability-tags span { font-size: 10px; padding: 7px 10px; }
+  .work-title { font-size: 15vw; }
+  .work-caption { font-size: 15px; }
+  .showcase-heading .scene-heading { font-size: 31px; overflow-wrap: anywhere; }
+  .project-tagline { font-size: 17px; }
+  .project-product { height: 275px; }
+  .product-frame { padding: 6px; border-radius: 19px; }
+  .project-artwork { border-radius: 13px; }
+  .project-description { font-size: 13px; }
+  .project-links { gap: 6px 14px; font-size: 10px; }
+  .project-stack { flex-basis: 100%; }
+  .visual-disclaimer { font-size: 7px; left: 18px; bottom: 15px; }
+  .artwork-system { padding: 25px 10px 0; }
+  .system-main { padding: 16px 12px; }
+  .system-metrics { margin-top: 18px; }
+  .system-metrics > div { padding: 8px 6px; min-height: 75px; }
+  .system-metrics small { font-size: 7px; }
+  .system-metrics b { font-size: 7px; }
+  .system-heading b { font-size: 13px; }
+  .tiny-pill { font-size: 6px; padding: 5px; }
+  .system-sidebar { width: 36px; }
+  .chart-panel, .list-panel { height: 75px; padding: 6px; }
+  .chart-line { height: 48px; }
+  .list-panel { gap: 6px; }
+  .list-panel span { font-size: 6px; }
+  .publish-node { padding: 12px 6px; }
+  .publish-node b { font-size: 8px; }
+  .publish-node small, .publish-node span { font-size: 7px; }
+  .publish-line { width: 16px; }
+  .artwork-publish { padding: 20px 13px; }
+  .artwork-knowledge { padding: 22px 10px 0; }
+  .knowledge-main { padding: 25px 10px; }
+  .knowledge-main > b { font-size: 14px; }
+  .community-network { margin-inline: -10px; }
+  .community-caption br { display: none; }
+  .inline-links { gap: 18px; }
+  .inline-links a { font-size: 12px; }
+  .journey-card h3 { font-size: 30px; }
+  .repo-terminal { border-radius: 17px; }
+  .terminal-top { padding: 0 15px; font-size: 9px; }
+  .terminal-command { padding: 20px 18px 15px; font-size: 11px; }
+  .repo-row { margin-inline: 12px; gap: 7px; grid-template-columns: 14px 1fr 15px; }
+  .repo-row strong { font-size: 11px; }
+  .repo-row small { font-size: 10px; }
+  .repo-all { margin-left: 20px; font-size: 11px; }
+  .scene-contact .scene-heading { font-size: 14vw; }
+  .contact-note { font-size: 14px; }
+  .contact-actions { gap: 20px; }
+  .apple-button { font-size: 14px; padding-inline: 22px; min-height: 50px; }
+  .contact-github { font-size: 14px; }
+  .footer-inner { flex-wrap: wrap; gap: 14px; font-size: 10px; }
+  .footer-inner > span { order: 3; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .page-progress { display: none; }
+}
+
+/* Downward scrolling becomes a full-width project exhibition. */
+.project-gallery .gallery-stage { padding: 0; min-height: 0; display: block; }
+.projects-track { display: flex; width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.projects-track::-webkit-scrollbar { display: none; }
+.gallery-project { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; }
+.gallery-project-stage { display: flex; align-items: center; min-height: 790px; padding: 100px 0 55px; }
+.gallery-controls { position: relative; z-index: 5; width: max-content; max-width: calc(100% - 32px); display: flex; align-items: center; gap: 18px; margin: 0 auto; padding: 8px 14px 8px 20px; border: 1px solid #ffffff21; border-radius: 99px; background: #202024d9; color: #f5f5f7; backdrop-filter: blur(20px); }
+.gallery-counter { white-space: nowrap; font: 12px 'DM Mono', monospace; }
+.gallery-counter b { font-weight: 500; }
+.gallery-counter > span { color: #aaaab2; }
+.gallery-dots, .gallery-arrows { display: flex; align-items: center; }
+.gallery-dots button { border: 0; background: none; width: 28px; height: 44px; padding: 0; display: grid; place-items: center; color: inherit; }
+.gallery-dots i { width: 5px; height: 5px; border-radius: 50%; background: #878790; transition: width .3s, background .3s; }
+.gallery-dots [aria-current='true'] i { width: 18px; border-radius: 4px; background: #f5f5f7; }
+.gallery-arrows { gap: 6px; }
+.gallery-arrows button { border: 0; display: grid; place-items: center; background: #ffffff12; color: #fff; width: 44px; height: 44px; border-radius: 50%; }
+.gallery-arrows button:hover { background: #ffffff23; }
+.gallery-arrows button:disabled { opacity: .3; cursor: default; }
+.has-scroll-scenes .project-gallery { height: 450svh; }
+.has-scroll-scenes .gallery-stage { height: 100svh; min-height: 0; }
+.has-scroll-scenes .projects-track { width: max-content; height: 100%; overflow: visible; scroll-snap-type: none; }
+.has-scroll-scenes .gallery-project { width: 100vw; flex: 0 0 100vw; height: 100%; }
+.has-scroll-scenes .gallery-project-stage { height: 100%; min-height: 0; padding: 80px 0 115px; }
+.has-scroll-scenes .gallery-controls { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); margin: 0; }
+@media (min-width: 900px) and (max-height: 780px) {
+  .has-scroll-scenes .gallery-project-stage { padding: 76px 0 105px; }
+  .gallery-project .project-product { height: 30svh; min-height: 190px; }
+  .gallery-project .project-description { font-size: 12px; }
+  .gallery-project .project-links { margin-top: 6px; }
+  .gallery-project .project-tagline { font-size: 20px; margin-top: 6px; }
+}
+@media (max-width: 899px) {
+  .gallery-project-stage { min-height: 750px; padding: 85px 0 35px; }
+  .gallery-stage { padding-bottom: 50px !important; }
+  .gallery-controls { gap: 10px; padding-left: 16px; }
+  .gallery-dots button { width: 24px; }
+}
+@media (max-width: 480px) {
+  .gallery-project-stage { min-height: 700px; }
+  .gallery-project .project-product { height: 255px; }
+}
+
+/* A single aircraft travels above the chapter backdrops and below their content. */
+.chapter-stage { z-index: 2; }
+.project-gallery { scroll-margin-top: 0; }
+.gallery-project { background: transparent; color: var(--scene-ink); }
+.scene-about .reading-statement, .scene-contact .contact-note { text-shadow: 0 1px 12px #f5f5f788; }
+.site-footer { position: relative; z-index: 2; }
+.gallery-dots button, .gallery-arrows button { cursor: pointer; }
+
+/* Floating liquid glass navigation and exhibition controls. */
+.site-header { top: 14px; background: none; border: 0; backdrop-filter: none; pointer-events: none; }
+.header-glass { pointer-events: auto; }
+.header-inner { padding: 0 20px; height: 64px; }
+.gallery-dock { width: max-content; margin: 0 auto; }
+.gallery-controls { border: 0; background: none; backdrop-filter: none; margin: 0; }
+.has-scroll-scenes .gallery-dock { position: absolute; z-index: 5; bottom: 28px; left: 50%; transform: translateX(-50%); }
+.has-scroll-scenes .gallery-controls { position: relative; bottom: auto; left: auto; transform: none; }
+.model-credit { min-height: 44px; display: flex; align-items: center; color: #6e6e73; }
+@media (max-width:899px) {
+  .site-header { top: 10px; }
+  .header-glass { width: calc(100% - 24px); }
+  .header-inner { height: 58px; padding: 0 16px; }
+  .mobile-nav { background: #11182766; padding-inline: 20px; }
+}
+
+.flight-pause { min-height: 44px; border: 0; background: transparent; color: #6e6e73; font-size: 12px; cursor: pointer; }
+
+/* Consistent editorial rhythm across biography, capabilities, projects and contact. */
+.about-bio { max-width: 600px; margin-inline: auto; line-height: 1.8; }
+.community-caption { max-width: 720px; margin-inline: auto; }
+.journey-english { font-family: 'DM Mono', var(--apple-font-text); font-size: 12px; letter-spacing: .03em; }
+.journey-tags { font-family: 'DM Mono', var(--apple-font-text); font-size: 10px; letter-spacing: .02em; }
+.deck-note { font-size: 13px; letter-spacing: .02em; }
+@media (max-width:899px) {
+  .reading-statement { line-height: 1.9; }
+  .capability-card h3 { font-weight: 600; }
+  .journey-description { line-height: 1.85; }
+  .project-description { line-height: 1.85; }
+  .community-caption { font-size: 15px; }
+}
