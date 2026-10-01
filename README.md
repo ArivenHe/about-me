@@ -125,4 +125,8 @@ location / {
 - **液态玻璃效果**：使用 [simple-liquid-glass](https://github.com/lucaperullo/simple-liquid-glass)。
 - **图标**：使用 [Lucide](https://github.com/lucide-icons/lucide)。
 
-第三方代码与资源遵循各自的许可证；本仓库尚未设置项目整体的开源许可证。
+## 许可证
+
+本项目原创代码与文档采用 [MIT License](LICENSE)，版权归 Ariven / 何治皓所有。
+
+第三方代码与资源遵循各自的许可证，其中 A350 模型继续按 CC BY 4.0 授权；使用或分发时请保留相应许可与署名。
